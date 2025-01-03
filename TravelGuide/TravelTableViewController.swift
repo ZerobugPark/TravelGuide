@@ -19,7 +19,8 @@ class TravelTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = 500
-        tableView.allowsSelection = false
+        tableView.separatorStyle = .none //테이블뷰 라인 없애기
+       
         headerLabel.font = .boldSystemFont(ofSize: 18)
         headerLabel.text = "YOUNG TRAVEL"
         headerLabel.textAlignment = .center
@@ -35,6 +36,16 @@ class TravelTableViewController: UITableViewController {
         
         let row = travelInfo.magazine[indexPath.row]
         
+        setImage(magazine: row, cell: cell)
+        setTitle(magazine: row, cell: cell)
+        setDate(magazine: row, cell: cell)
+
+        
+        return cell
+    }
+    
+    private func setImage(magazine row: Magazine, cell:TravelTableViewCell) {
+        
         let image = row.photo_image
         
         if let image {
@@ -46,7 +57,10 @@ class TravelTableViewController: UITableViewController {
         cell.travelImageView?.contentMode = .scaleAspectFill
         cell.travelImageView.layer.cornerRadius = 15
         cell.travelImageView.clipsToBounds = true
-        
+    }
+    
+    private func setTitle(magazine row: Magazine, cell:TravelTableViewCell) {
+       
         cell.titleLabel.text = row.title
         cell.titleLabel.numberOfLines = 0
         cell.titleLabel.font = .boldSystemFont(ofSize: 20)
@@ -55,7 +69,10 @@ class TravelTableViewController: UITableViewController {
         cell.subtitleLabel.font = .systemFont(ofSize: 14)
         cell.subtitleLabel.textColor = .gray
         cell.subtitleLabel.numberOfLines = 0
-        
+    }
+
+    private func setDate(magazine row: Magazine, cell:TravelTableViewCell) {
+      
         let formatter = DateFormatter()
         formatter.dateFormat = "yyMMdd"
         if let stringToDate = formatter.date(from: row.date) {
@@ -70,16 +87,7 @@ class TravelTableViewController: UITableViewController {
         
         cell.dateLabel.font = .systemFont(ofSize: 12)
         cell.dateLabel.textColor = .gray
-        
-       
-        
-        
-        
-        return cell
     }
-    
-    
-
 
 
 }
