@@ -7,11 +7,12 @@
 
 import UIKit
 
+
 class TravelTableViewController: UITableViewController {
 
     
-    let travelInfo = MagazineInfo()
-    
+    let travelInfo = MagazineInfo().magazine
+    let formatter = DateFormatter()
 
     @IBOutlet var headerLabel: UILabel!
     
@@ -27,14 +28,14 @@ class TravelTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return travelInfo.magazine.count
+        return travelInfo.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TravelTableViewController", for: indexPath) as! TravelTableViewCell
         
-        let row = travelInfo.magazine[indexPath.row]
+        let row = travelInfo[indexPath.row]
         
         setImage(magazine: row, cell: cell)
         setTitle(magazine: row, cell: cell)
@@ -73,20 +74,25 @@ class TravelTableViewController: UITableViewController {
 
     private func setDate(magazine row: Magazine, cell:TravelTableViewCell) {
       
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyMMdd"
-        if let stringToDate = formatter.date(from: row.date) {
-            formatter.dateFormat = "yy년 MM월 dd일"
-            let date = formatter.string(from: stringToDate)
-            cell.dateLabel.text = "\(date)"
-        } else {
-            formatter.dateFormat = "yy년 MM월 dd일"
-            let date = formatter.string(from: Date())
-            cell.dateLabel.text = "\(date)"
-        }
+        let formattedDate  = formatDate(from: row.date, inputFormat: "yyMMdd", outputFormat: "yy년 MM월 dd일")
         
+        cell.dateLabel.text = formattedDate
         cell.dateLabel.font = .systemFont(ofSize: 12)
         cell.dateLabel.textColor = .gray
+        
+    }
+
+    private func formatDate(from input: String, inputFormat: String, outputFormat: String) -> String {
+        
+        formatter.dateFormat = inputFormat
+        if let date = formatter.date(from: input) {
+            formatter.dateFormat = outputFormat
+            return formatter.string(from: date)
+        } else {
+            formatter.dateFormat = outputFormat
+            return formatter.string(from: Date())
+        }
+        
     }
 
 
