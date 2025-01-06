@@ -50,7 +50,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TravelTableViewController" rowHeight="500" id="nMd-zY-9YN" customClass="TravelTableViewCell" customModule="TravelGuide" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TravelTableViewCell" rowHeight="500" id="nMd-zY-9YN" customClass="TravelTableViewCell" customModule="TravelGuide" customModuleProvider="target">
                                 <rect key="frame" x="20" y="115.33333206176758" width="353" height="500"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nMd-zY-9YN" id="QMz-yJ-Lkh">
